@@ -36,6 +36,11 @@ echo "Installing ROS dependencies..."
 sudo apt update
 sudo apt install -y ros-jazzy-mavros ros-jazzy-mavros-extras ros-jazzy-cv-bridge
 
+# Source additional ROS2 setup
+echo "Sourcing additional ROS2 setup..."
+source /opt/ros/jazzy/setup.bash
+source install/setup.bash
+
 # Set up Docker emulator for Jetson development
 echo "Setting up Docker emulator for Jetson development..."
 if ! command -v docker &> /dev/null

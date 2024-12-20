@@ -6,7 +6,6 @@ if(NOT CMAKE_C_STANDARD)
   set(CMAKE_C_STANDARD 99)
 endif()
 
-# Update to a recommended C++ standard for ROS 2 (C++17)
 if(NOT CMAKE_CXX_STANDARD)
   set(CMAKE_CXX_STANDARD 17)
 endif()
@@ -16,14 +15,13 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
-# Find ament_cmake and your other dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(mavros_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 
-# Create an executable for your MAVLink node
+# Create an executable for MAVLink node
 add_executable(mavlink_node src/mavlink_node.cpp)
 target_include_directories(mavlink_node PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
@@ -37,7 +35,7 @@ ament_target_dependencies(mavlink_node
   mavros_msgs
 )
 
-# (Optional) Export dependencies if other packages need them
+#Export dependencies if other packages need them
 ament_export_dependencies(
   rclcpp
   std_msgs
