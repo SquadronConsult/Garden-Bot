@@ -26,9 +26,12 @@ echo "Installing ROS dependencies..."
 sudo apt update
 sudo apt install -y ros-jazzy-mavros ros-jazzy-mavros-extras ros-jazzy-cv-bridge
 
-# Source additional ROS2 setup
-echo "Sourcing additional ROS2 setup..."
-source /opt/ros/jazzy/setup.bash
-source install/setup.bash
+# Install NVIDIA DeepStream SDK
+echo "Installing NVIDIA DeepStream SDK..."
+# Remove any previous DeepStream installations
+sudo rm -rf /usr/local/deepstream /usr/lib/x86_64-linux-gnu/gstreamer-1.0/libgstnv* /usr/bin/deepstream* /usr/lib/x86_64-linux-gnu/gstreamer-1.0/libnvdsgst* /usr/lib/x86_64-linux-gnu/gstreamer-1.0/deepstream* /opt/nvidia/deepstream/deepstream*
+# Download and install the DeepStream 7.1 dGPU Debian package
+wget https://catalog.ngc.nvidia.com/orgs/nvidia/resources/deepstream/deepstream-7.1_7.1.0-1_amd64.deb
+sudo apt-get install ./deepstream-7.1_7.1.0-1_amd64.deb
 
 echo "Setup complete."
