@@ -1,62 +1,105 @@
-#include <ros/ros.h>
-#include <mavros_msgs/CommandBool.h>
-#include <mavros_msgs/SetMode.h>
-#include <mavros_msgs/State.h>
+#include <rclcpp/rclcpp.hpp>
+#include <mavros_msgs/srv/command_bool.hpp>
+#include <mavros_msgs/srv/set_mode.hpp>
+#include <mavros_msgs/msg/state.hpp>
+#include <sensor_msgs/msg/nav_sat_fix.hpp>
 
-mavros_msgs::State current_state;
-void state_cb(const mavros_msgs::State::ConstPtr& msg){
-    current_state = *msg;
-}
+using std::placeholders::_1;
 
-int main(int argc, char **argv)
+class MavlinkNode : public rclcpp::Node
 {
-    ros::init(argc, argv, "mavlink_node");
-    ros::NodeHandle nh;
+public:
+    MavlinkNode() : Node("mavlink_node")
+    {
+        state_sub_ = this->create_subscription<mavros_msgs::msg::State>(
+            "mavros/state", 10, std::bind(&MavlinkNode::state_cb, this, _1));
+        gps_sub_ = this->create_subscription<sensor_msgs::msg::NavSatFix>(
+            "mavros/global_position/global", 10, std::bind(&MavlinkNode::gps_cb, this, _1));
+        arming_client_ = this->create_client<mavros_msgs::srv::CommandBool>("mavros/cmd/arming");
+        set_mode_client_ = this->create_client<mavros_msgs::srv::SetMode>("mavros/set_mode");
 
-    ros::Subscriber state_sub = nh.subscribe<mavros_msgs::State>
-            ("mavros/state", 10, state_cb);
-    ros::ServiceClient arming_client = nh.serviceClient<mavros_msgs::CommandBool>
-            ("mavros/cmd/arming");
-    ros::ServiceClient set_mode_client = nh.serviceClient<mavros_msgs::SetMode>
-            ("mavros/set_mode");
+        timer_ = this->create_wall_timer(
+            std::chrono::milliseconds(50), std::bind(&MavlinkNode::timer_callback, this));
 
-    ros::Rate rate(20.0);
-
-    while(ros::ok() && !current_state.connected){
-        ros::spinOnce();
-        rate.sleep();
+        last_request_ = this->now();
     }
 
-    mavros_msgs::SetMode offb_set_mode;
-    offb_set_mode.request.custom_mode = "OFFBOARD";
+private:
+    void state_cb(const mavros_msgs::msg::State::SharedPtr msg)
+    {
+        current_state_ = *msg;
+    }
 
-    mavros_msgs::CommandBool arm_cmd;
-    arm_cmd.request.value = true;
+    void gps_cb(const sensor_msgs::msg::NavSatFix::SharedPtr msg)
+    {
+        current_gps_ = *msg;
+    }
 
-    ros::Time last_request = ros::Time::now();
+    void timer_callback()
+    {
+        if (!current_state_.connected)
+        {
+            RCLCPP_INFO(this->get_logger(), "Waiting for FCU connection...");
+            return;
+        }
 
-    while(ros::ok()){
-        if( current_state.mode != "OFFBOARD" &&
-            (ros::Time::now() - last_request > ros::Duration(5.0))){
-            if( set_mode_client.call(offb_set_mode) &&
-                offb_set_mode.response.mode_sent){
-                ROS_INFO("Offboard enabled");
-            }
-            last_request = ros::Time::now();
-        } else {
-            if( !current_state.armed &&
-                (ros::Time::now() - last_request > ros::Duration(5.0))){
-                if( arming_client.call(arm_cmd) &&
-                    arm_cmd.response.success){
-                    ROS_INFO("Vehicle armed");
+        if (current_state_.mode != "OFFBOARD" &&
+            (this->now() - last_request_ > rclcpp::Duration(5, 0)))
+        {
+            auto request = std::make_shared<mavros_msgs::srv::SetMode::Request>();
+            request->custom_mode = "OFFBOARD";
+
+            auto result = set_mode_client_->async_send_request(request);
+            if (rclcpp::spin_until_future_complete(this->get_node_base_interface(), result) ==
+                rclcpp::FutureReturnCode::SUCCESS)
+            {
+                if (result.get()->mode_sent)
+                {
+                    RCLCPP_INFO(this->get_logger(), "Offboard enabled");
                 }
-                last_request = ros::Time::now();
+            }
+            last_request_ = this->now();
+        }
+        else
+        {
+            if (!current_state_.armed &&
+                (this->now() - last_request_ > rclcpp::Duration(5, 0)))
+            {
+                auto request = std::make_shared<mavros_msgs::srv::CommandBool::Request>();
+                request->value = true;
+
+                auto result = arming_client_->async_send_request(request);
+                if (rclcpp::spin_until_future_complete(this->get_node_base_interface(), result) ==
+                    rclcpp::FutureReturnCode::SUCCESS)
+                {
+                    if (result.get()->success)
+                    {
+                        RCLCPP_INFO(this->get_logger(), "Vehicle armed");
+                    }
+                }
+                last_request_ = this->now();
             }
         }
 
-        ros::spinOnce();
-        rate.sleep();
+        RCLCPP_INFO(this->get_logger(), "Current GPS: [Lat: %f, Lon: %f, Alt: %f]",
+                    current_gps_.latitude, current_gps_.longitude, current_gps_.altitude);
     }
 
+    rclcpp::Subscription<mavros_msgs::msg::State>::SharedPtr state_sub_;
+    rclcpp::Subscription<sensor_msgs::msg::NavSatFix>::SharedPtr gps_sub_;
+    rclcpp::Client<mavros_msgs::srv::CommandBool>::SharedPtr arming_client_;
+    rclcpp::Client<mavros_msgs::srv::SetMode>::SharedPtr set_mode_client_;
+    rclcpp::TimerBase::SharedPtr timer_;
+    rclcpp::Time last_request_;
+    mavros_msgs::msg::State current_state_;
+    sensor_msgs::msg::NavSatFix current_gps_;
+};
+
+int main(int argc, char **argv)
+{
+    rclcpp::init(argc, argv);
+    auto node = std::make_shared<MavlinkNode>();
+    rclcpp::spin(node);
+    rclcpp::shutdown();
     return 0;
 }

@@ -197,6 +197,43 @@ package1_uninstall/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/package1_uninstall.dir/build.make CMakeFiles/package1_uninstall.dir/build
 .PHONY : package1_uninstall/fast
 
+#=============================================================================
+# Target rules for targets named mavlink_node
+
+# Build rule for target.
+mavlink_node: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mavlink_node
+.PHONY : mavlink_node
+
+# fast build rule for target.
+mavlink_node/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mavlink_node.dir/build.make CMakeFiles/mavlink_node.dir/build
+.PHONY : mavlink_node/fast
+
+src/mavlink_node.o: src/mavlink_node.cpp.o
+.PHONY : src/mavlink_node.o
+
+# target to build an object file
+src/mavlink_node.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mavlink_node.dir/build.make CMakeFiles/mavlink_node.dir/src/mavlink_node.cpp.o
+.PHONY : src/mavlink_node.cpp.o
+
+src/mavlink_node.i: src/mavlink_node.cpp.i
+.PHONY : src/mavlink_node.i
+
+# target to preprocess a source file
+src/mavlink_node.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mavlink_node.dir/build.make CMakeFiles/mavlink_node.dir/src/mavlink_node.cpp.i
+.PHONY : src/mavlink_node.cpp.i
+
+src/mavlink_node.s: src/mavlink_node.cpp.s
+.PHONY : src/mavlink_node.s
+
+# target to generate assembly for a file
+src/mavlink_node.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mavlink_node.dir/build.make CMakeFiles/mavlink_node.dir/src/mavlink_node.cpp.s
+.PHONY : src/mavlink_node.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -212,6 +249,10 @@ help:
 	@echo "... test"
 	@echo "... package1_uninstall"
 	@echo "... uninstall"
+	@echo "... mavlink_node"
+	@echo "... src/mavlink_node.o"
+	@echo "... src/mavlink_node.i"
+	@echo "... src/mavlink_node.s"
 .PHONY : help
 
 

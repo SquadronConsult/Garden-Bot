@@ -1,44 +1,39 @@
 # Ensure you have the following installed:
 
-- Docker Desktop
+- Docker Desktop: ENSURE YOU HAVE WSL2 ENABLED
 
-- Ubuntu 20.04 (Yes, 20.04.. The tool kit is not compatible with 22.04)
-
-- NVIDIA container Toolkit 
+- WSL2 INSTALLED
 
 # Then do the following:
 
-1. Run the following command to install dependencies:
+1. Run the setup script to configure your environment:
    ```bash
-   ./install_dependencies.sh
+   ./setup.sh
    ```
 
-2. Source the ROS2 setup script:
-   ```bash
-   source ros2_setup.sh
-   ```
-
-3. Build the workspace using colcon:
+2. Build the workspace using colcon:
    ```bash
    colcon build
    ```
 
-4. Source the workspace setup script:
+3. Source the workspace setup script:
    ```bash
    source install/setup.bash
    ```
 
-5. (Optional for testing world not yet created - 12/20/2024) Launch Gazebo with the configured world:
+4. (Optional for testing world not yet created - 12/20/2024) Launch Gazebo with the configured world:
    ```bash
    roslaunch garden_bot gazebo.launch
    ```
 
-6. (Optional for testing world not yet created - 12/20/2024) Run the MAVLink node to communicate with the quadcopter:
+5. (Optional for testing world not yet created - 12/20/2024) Run the MAVLink node to communicate with the quadcopter:
    ```bash
    rosrun package1 mavlink_node
    ```
 
-7. Set up and run the Docker emulator for Jetson development:
+6. Set up and run the Docker emulator for Jetson development:
    ```bash
-   ./setup_docker_emulator.sh
+   docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+   docker pull nvcr.io/nvidia/l4t-base:r32.4.3
+   docker run --gpus all -it --platform linux/arm64 nvcr.io/nvidia/l4t-base:r32.4.3
    ```

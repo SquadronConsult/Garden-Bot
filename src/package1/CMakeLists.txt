@@ -1,41 +1,55 @@
 cmake_minimum_required(VERSION 3.8)
 project(package1)
 
+# Default to C99
+if(NOT CMAKE_C_STANDARD)
+  set(CMAKE_C_STANDARD 99)
+endif()
+
+# Update to a recommended C++ standard for ROS 2 (C++17)
+if(NOT CMAKE_CXX_STANDARD)
+  set(CMAKE_CXX_STANDARD 17)
+endif()
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
-# find dependencies
+# Find ament_cmake and your other dependencies
 find_package(ament_cmake REQUIRED)
-# uncomment the following section in order to fill in
-# further dependencies manually.
-# find_package(<dependency> REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(mavros_msgs REQUIRED)
+find_package(sensor_msgs REQUIRED)
+find_package(geometry_msgs REQUIRED)
 
-if(BUILD_TESTING)
-  find_package(ament_lint_auto REQUIRED)
-  # the following line skips the linter which checks for copyrights
-  # comment the line when a copyright and license is added to all source files
-  set(ament_cmake_copyright_FOUND TRUE)
-  # the following line skips cpplint (only works in a git repo)
-  # comment the line when this package is in a git repo and when
-  # a copyright and license is added to all source files
-  set(ament_cmake_cpplint_FOUND TRUE)
-  ament_lint_auto_find_test_dependencies()
-endif()
-
-find_package(gazebo REQUIRED)
-find_package(roslaunch REQUIRED)
-
-find_package(catkin REQUIRED COMPONENTS
-  mavros
-  mavros_extras
-  roscpp
-  rospy
+# Create an executable for your MAVLink node
+add_executable(mavlink_node src/mavlink_node.cpp)
+target_include_directories(mavlink_node PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>
+)
+ament_target_dependencies(mavlink_node
+  rclcpp
   std_msgs
+  sensor_msgs
+  geometry_msgs
+  mavros_msgs
 )
 
-catkin_package(
-  CATKIN_DEPENDS mavros mavros_extras roscpp rospy std_msgs
+# (Optional) Export dependencies if other packages need them
+ament_export_dependencies(
+  rclcpp
+  std_msgs
+  sensor_msgs
+  geometry_msgs
+  mavros_msgs
+)
+
+# Install the executable
+install(TARGETS
+  mavlink_node
+  DESTINATION lib/${PROJECT_NAME}
 )
 
 ament_package()

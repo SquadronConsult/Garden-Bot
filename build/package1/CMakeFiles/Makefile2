@@ -63,7 +63,7 @@ CMAKE_BINARY_DIR = /mnt/c/Users/m_jm9/OneDrive/Documents/GitHub/Garden-Bot/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all:
+all: CMakeFiles/mavlink_node.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -73,6 +73,7 @@ preinstall:
 # The main recursive "clean" target.
 clean: CMakeFiles/uninstall.dir/clean
 clean: CMakeFiles/package1_uninstall.dir/clean
+clean: CMakeFiles/mavlink_node.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -126,6 +127,32 @@ package1_uninstall: CMakeFiles/package1_uninstall.dir/rule
 CMakeFiles/package1_uninstall.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/package1_uninstall.dir/build.make CMakeFiles/package1_uninstall.dir/clean
 .PHONY : CMakeFiles/package1_uninstall.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/mavlink_node.dir
+
+# All Build rule for target.
+CMakeFiles/mavlink_node.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mavlink_node.dir/build.make CMakeFiles/mavlink_node.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mavlink_node.dir/build.make CMakeFiles/mavlink_node.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/c/Users/m_jm9/OneDrive/Documents/GitHub/Garden-Bot/build/package1/CMakeFiles --progress-num=1,2 "Built target mavlink_node"
+.PHONY : CMakeFiles/mavlink_node.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/mavlink_node.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/m_jm9/OneDrive/Documents/GitHub/Garden-Bot/build/package1/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/mavlink_node.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/m_jm9/OneDrive/Documents/GitHub/Garden-Bot/build/package1/CMakeFiles 0
+.PHONY : CMakeFiles/mavlink_node.dir/rule
+
+# Convenience name for target.
+mavlink_node: CMakeFiles/mavlink_node.dir/rule
+.PHONY : mavlink_node
+
+# clean rule for target.
+CMakeFiles/mavlink_node.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mavlink_node.dir/build.make CMakeFiles/mavlink_node.dir/clean
+.PHONY : CMakeFiles/mavlink_node.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.
