@@ -24,3 +24,12 @@
    source install/setup.bash
    ```
 
+5. (Optional for testing world not yet created - 12/20/2024) Launch Gazebo with the configured world:
+   ```bash
+   roslaunch garden_bot gazebo.launch
+   ```
+
+6. (Optional for testing world not yet created - 12/20/2024) Run the MAVLink node to communicate with the quadcopter:
+   ```bash
+   rosrun package1 mavlink_node
+   ```

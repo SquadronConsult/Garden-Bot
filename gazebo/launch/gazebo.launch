@@ -1,0 +1,6 @@
+<launch>
+  <arg name="testing" default="$(find garden_bot)/gazebo/worlds/testing.world"/>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="test" value="$(arg testing)"/>
+  </include>
+</launch>

@@ -23,4 +23,19 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
+find_package(gazebo REQUIRED)
+find_package(roslaunch REQUIRED)
+
+find_package(catkin REQUIRED COMPONENTS
+  mavros
+  mavros_extras
+  roscpp
+  rospy
+  std_msgs
+)
+
+catkin_package(
+  CATKIN_DEPENDS mavros mavros_extras roscpp rospy std_msgs
+)
+
 ament_package()
