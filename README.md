@@ -1,6 +1,10 @@
 # Ensure you have the following installed:
 
-- Ubuntu 22.04
+- Docker Desktop
+
+- Ubuntu 20.04 (Yes, 20.04.. The tool kit is not compatible with 22.04)
+
+- NVIDIA container Toolkit 
 
 # Then do the following:
 
@@ -32,4 +36,9 @@
 6. (Optional for testing world not yet created - 12/20/2024) Run the MAVLink node to communicate with the quadcopter:
    ```bash
    rosrun package1 mavlink_node
+   ```
+
+7. Set up and run the Docker emulator for Jetson development:
+   ```bash
+   ./setup_docker_emulator.sh
    ```
