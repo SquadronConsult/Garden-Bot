@@ -39,6 +39,17 @@ docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
 docker pull nvcr.io/nvidia/l4t-base:r32.4.3
 docker run --gpus all -it --platform linux/arm64 nvcr.io/nvidia/l4t-base:r32.4.3
 
+# Install DeepStream SDK dependencies
+echo "Installing DeepStream SDK dependencies..."
+sudo apt install -y \
+libgstreamer1.0-0 \
+gstreamer1.0-tools \
+gstreamer1.0-plugins-good \
+gstreamer1.0-plugins-bad \
+gstreamer1.0-plugins-ugly \
+gstreamer1.0-libav \
+libgstreamer-plugins-base1.0-dev
+
 # Set up DeepStream
 echo "Setting up NVIDIA DeepStream..."
 sudo docker run -it --rm --gpus all --network=host \
