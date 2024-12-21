@@ -1,7 +1,9 @@
 #!/bin/bash
 
-# Install GeographicLib datasets
-echo "Installing GeographicLib datasets..."
+# Install GeographicLib tools and datasets
+echo "Installing GeographicLib tools and datasets..."
+sudo apt update
+sudo apt install -y geographiclib-tools
 wget https://raw.githubusercontent.com/mavlink/mavros/master/mavros/scripts/install_geographiclib_datasets.sh
 chmod +x install_geographiclib_datasets.sh
 sudo ./install_geographiclib_datasets.sh
