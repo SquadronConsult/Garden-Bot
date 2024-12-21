@@ -26,7 +26,7 @@
    roslaunch garden_bot gazebo.launch
    ```
 
-5. (Optional for testing world not yet created - 12/20/2024) Run the MAVLink node to communicate with the quadcopter:
+5.  Run the MAVLink node to communicate with the quadcopter (If there was a quadcopter to connect):
    ```bash
    rosrun package1 mavlink_node
    ```
