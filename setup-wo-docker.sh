@@ -14,7 +14,7 @@ if [ -f ~/Garden-Bot/install/setup.bash ]; then
     source ~/Garden-Bot/install/setup.bash
 fi
 
-# Install GeographicLib datasets
+# Install GeographicLib datasets for mavros navigation
 echo "Installing GeographicLib datasets..."
 wget https://raw.githubusercontent.com/mavlink/mavros/master/mavros/scripts/install_geographiclib_datasets.sh
 chmod +x install_geographiclib_datasets.sh
@@ -25,6 +25,17 @@ rm install_geographiclib_datasets.sh
 echo "Installing ROS dependencies..."
 sudo apt update
 sudo apt install -y ros-jazzy-mavros ros-jazzy-mavros-extras ros-jazzy-cv-bridge
+
+# Install DeepStream SDK dependencies
+echo "Installing DeepStream SDK dependencies..."
+sudo apt install -y \
+libgstreamer1.0-0 \
+gstreamer1.0-tools \
+gstreamer1.0-plugins-good \
+gstreamer1.0-plugins-bad \
+gstreamer1.0-plugins-ugly \
+gstreamer1.0-libav \
+libgstreamer-plugins-base1.0-dev
 
 # Install NVIDIA DeepStream SDK
 echo "Installing NVIDIA DeepStream SDK..."
