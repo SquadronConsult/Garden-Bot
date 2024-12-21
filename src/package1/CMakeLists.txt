@@ -29,16 +29,15 @@ target_include_directories(mavlink_node PUBLIC
 )
 ament_target_dependencies(mavlink_node
   rclcpp
-  std_msgs
   sensor_msgs
   geometry_msgs
   mavros_msgs
 )
+target_link_libraries(mavlink_node ${dependencies})
 
-#Export dependencies if other packages need them
+# Export dependencies if other packages need them
 ament_export_dependencies(
   rclcpp
-  std_msgs
   sensor_msgs
   geometry_msgs
   mavros_msgs

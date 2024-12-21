@@ -1,1 +1,1 @@
-geometry_msgs:mavros_msgs:rclcpp:sensor_msgs
+mavros_msgs:rclcpp:sensor_msgs

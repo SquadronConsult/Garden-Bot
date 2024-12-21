@@ -14,10 +14,26 @@ echo "Installing ROS dependencies..."
 sudo apt update
 sudo apt install -y ros-jazzy-mavros ros-jazzy-mavros-extras ros-jazzy-cv-bridge
 
-# Source additional ROS2 setup
-echo "Sourcing additional ROS2 setup..."
+# Install python3-rosdep just in case
+echo "Installing python3-rosdep just in case..."
+sudo apt-get install -y python3-rosdep
+
+# Source the ROS 2 installation
+echo "Sourcing the ROS 2 installation..."
 source /opt/ros/jazzy/setup.bash
-source install/setup.bash
+
+# Source the workspace overlay if it exists
+if [ -f install/setup.bash ]; then
+    echo "Sourcing the workspace overlay..."
+    source install/setup.bash
+fi
+
+# Add any additional environment setup here
+
+# Set ROS_DISTRO environment variable
+echo "Setting ROS_DISTRO environment variable..."
+echo "export ROS_DISTRO=jazzy" >> ~/.bashrc
+source ~/.bashrc
 
 # Set up NVIDIA Container Toolkit
 echo "Setting up NVIDIA Container Toolkit..."
