@@ -36,7 +36,7 @@ endif()
 set(package1_FOUND_AMENT_PACKAGE TRUE)
 
 # include all config extra files
-set(_extras "ament_cmake_export_dependencies-extras.cmake")
+set(_extras "")
 foreach(_extra ${_extras})
   include("${package1_DIR}/${_extra}")
 endforeach()

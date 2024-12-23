@@ -1,0 +1,6 @@
+<launch>
+  <!-- Include anynecessary parameters or configurations for the real drone -->
+ <node pkg="package1" type="mavlink_node" name="mavlink_node" output="screen">
+   <!-- Add any necessary parameters or remappings here -->
+ </node>
+</launch>

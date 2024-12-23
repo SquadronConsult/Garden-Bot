@@ -1,8 +1,8 @@
-# Install script for directory: /mnt/c/Users/m_jm9/OneDrive/Documents/GitHub/Garden-Bot/src/package1
+# Install script for directory: /mnt/c/Users/m_jm9/OneDrive/Documents/GitHub/Garden-bot/src/package1
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/mnt/c/Users/m_jm9/OneDrive/Documents/GitHub/Garden-Bot/install/package1")
+  set(CMAKE_INSTALL_PREFIX "/mnt/c/Users/m_jm9/OneDrive/Documents/GitHub/Garden-bot/install/package1")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -49,7 +49,7 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/package1/mavlink_node"
          RPATH "")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/package1" TYPE EXECUTABLE FILES "/mnt/c/Users/m_jm9/OneDrive/Documents/GitHub/Garden-Bot/build/package1/mavlink_node")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/package1" TYPE EXECUTABLE FILES "/mnt/c/Users/m_jm9/OneDrive/Documents/GitHub/Garden-bot/build/package1/mavlink_node")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/package1/mavlink_node" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/package1/mavlink_node")
     file(RPATH_CHANGE
@@ -63,15 +63,19 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  include("/mnt/c/Users/m_jm9/OneDrive/Documents/GitHub/Garden-Bot/build/package1/CMakeFiles/mavlink_node.dir/install-cxx-module-bmi-noconfig.cmake" OPTIONAL)
+  include("/mnt/c/Users/m_jm9/OneDrive/Documents/GitHub/Garden-bot/build/package1/CMakeFiles/mavlink_node.dir/install-cxx-module-bmi-noconfig.cmake" OPTIONAL)
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ament_index/resource_index/package_run_dependencies" TYPE FILE FILES "/mnt/c/Users/m_jm9/OneDrive/Documents/GitHub/Garden-Bot/build/package1/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/package1")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/package1/launch" TYPE DIRECTORY FILES "/mnt/c/Users/m_jm9/OneDrive/Documents/GitHub/Garden-bot/src/package1/launch/")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ament_index/resource_index/parent_prefix_path" TYPE FILE FILES "/mnt/c/Users/m_jm9/OneDrive/Documents/GitHub/Garden-Bot/build/package1/ament_cmake_index/share/ament_index/resource_index/parent_prefix_path/package1")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ament_index/resource_index/package_run_dependencies" TYPE FILE FILES "/mnt/c/Users/m_jm9/OneDrive/Documents/GitHub/Garden-bot/build/package1/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/package1")
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ament_index/resource_index/parent_prefix_path" TYPE FILE FILES "/mnt/c/Users/m_jm9/OneDrive/Documents/GitHub/Garden-bot/build/package1/ament_cmake_index/share/ament_index/resource_index/parent_prefix_path/package1")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
@@ -79,7 +83,7 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/package1/environment" TYPE FILE FILES "/mnt/c/Users/m_jm9/OneDrive/Documents/GitHub/Garden-Bot/build/package1/ament_cmake_environment_hooks/ament_prefix_path.dsv")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/package1/environment" TYPE FILE FILES "/mnt/c/Users/m_jm9/OneDrive/Documents/GitHub/Garden-bot/build/package1/ament_cmake_environment_hooks/ament_prefix_path.dsv")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
@@ -87,46 +91,42 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/package1/environment" TYPE FILE FILES "/mnt/c/Users/m_jm9/OneDrive/Documents/GitHub/Garden-Bot/build/package1/ament_cmake_environment_hooks/path.dsv")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/package1/environment" TYPE FILE FILES "/mnt/c/Users/m_jm9/OneDrive/Documents/GitHub/Garden-bot/build/package1/ament_cmake_environment_hooks/path.dsv")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/package1" TYPE FILE FILES "/mnt/c/Users/m_jm9/OneDrive/Documents/GitHub/Garden-Bot/build/package1/ament_cmake_environment_hooks/local_setup.bash")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/package1" TYPE FILE FILES "/mnt/c/Users/m_jm9/OneDrive/Documents/GitHub/Garden-bot/build/package1/ament_cmake_environment_hooks/local_setup.bash")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/package1" TYPE FILE FILES "/mnt/c/Users/m_jm9/OneDrive/Documents/GitHub/Garden-Bot/build/package1/ament_cmake_environment_hooks/local_setup.sh")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/package1" TYPE FILE FILES "/mnt/c/Users/m_jm9/OneDrive/Documents/GitHub/Garden-bot/build/package1/ament_cmake_environment_hooks/local_setup.sh")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/package1" TYPE FILE FILES "/mnt/c/Users/m_jm9/OneDrive/Documents/GitHub/Garden-Bot/build/package1/ament_cmake_environment_hooks/local_setup.zsh")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/package1" TYPE FILE FILES "/mnt/c/Users/m_jm9/OneDrive/Documents/GitHub/Garden-bot/build/package1/ament_cmake_environment_hooks/local_setup.zsh")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/package1" TYPE FILE FILES "/mnt/c/Users/m_jm9/OneDrive/Documents/GitHub/Garden-Bot/build/package1/ament_cmake_environment_hooks/local_setup.dsv")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/package1" TYPE FILE FILES "/mnt/c/Users/m_jm9/OneDrive/Documents/GitHub/Garden-bot/build/package1/ament_cmake_environment_hooks/local_setup.dsv")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/package1" TYPE FILE FILES "/mnt/c/Users/m_jm9/OneDrive/Documents/GitHub/Garden-Bot/build/package1/ament_cmake_environment_hooks/package.dsv")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/package1" TYPE FILE FILES "/mnt/c/Users/m_jm9/OneDrive/Documents/GitHub/Garden-bot/build/package1/ament_cmake_environment_hooks/package.dsv")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ament_index/resource_index/packages" TYPE FILE FILES "/mnt/c/Users/m_jm9/OneDrive/Documents/GitHub/Garden-Bot/build/package1/ament_cmake_index/share/ament_index/resource_index/packages/package1")
-endif()
-
-if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/package1/cmake" TYPE FILE FILES "/mnt/c/Users/m_jm9/OneDrive/Documents/GitHub/Garden-Bot/build/package1/ament_cmake_export_dependencies/ament_cmake_export_dependencies-extras.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ament_index/resource_index/packages" TYPE FILE FILES "/mnt/c/Users/m_jm9/OneDrive/Documents/GitHub/Garden-bot/build/package1/ament_cmake_index/share/ament_index/resource_index/packages/package1")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/package1/cmake" TYPE FILE FILES
-    "/mnt/c/Users/m_jm9/OneDrive/Documents/GitHub/Garden-Bot/build/package1/ament_cmake_core/package1Config.cmake"
-    "/mnt/c/Users/m_jm9/OneDrive/Documents/GitHub/Garden-Bot/build/package1/ament_cmake_core/package1Config-version.cmake"
+    "/mnt/c/Users/m_jm9/OneDrive/Documents/GitHub/Garden-bot/build/package1/ament_cmake_core/package1Config.cmake"
+    "/mnt/c/Users/m_jm9/OneDrive/Documents/GitHub/Garden-bot/build/package1/ament_cmake_core/package1Config-version.cmake"
     )
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/package1" TYPE FILE FILES "/mnt/c/Users/m_jm9/OneDrive/Documents/GitHub/Garden-Bot/src/package1/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/package1" TYPE FILE FILES "/mnt/c/Users/m_jm9/OneDrive/Documents/GitHub/Garden-bot/src/package1/package.xml")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -137,5 +137,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/mnt/c/Users/m_jm9/OneDrive/Documents/GitHub/Garden-Bot/build/package1/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/mnt/c/Users/m_jm9/OneDrive/Documents/GitHub/Garden-bot/build/package1/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

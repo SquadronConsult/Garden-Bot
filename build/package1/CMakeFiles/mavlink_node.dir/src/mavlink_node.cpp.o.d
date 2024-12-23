@@ -1,5 +1,5 @@
 CMakeFiles/mavlink_node.dir/src/mavlink_node.cpp.o: \
- /mnt/c/Users/m_jm9/OneDrive/Documents/GitHub/Garden-Bot/src/package1/src/mavlink_node.cpp \
+ /mnt/c/Users/m_jm9/OneDrive/Documents/GitHub/Garden-bot/src/package1/src/mavlink_node.cpp \
  /usr/include/stdc-predef.h \
  /opt/ros/jazzy/include/rclcpp/rclcpp/rclcpp.hpp \
  /usr/include/c++/13/csignal \

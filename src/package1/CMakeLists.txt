@@ -28,10 +28,25 @@ ament_target_dependencies(mavlink_node
   mavros_msgs
 )
 
+# Ensure the build directory is set correctly
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+
 # Install the executable
 install(TARGETS
   mavlink_node
   DESTINATION lib/${PROJECT_NAME}
 )
+
+# Install the launch directory
+install(
+  DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/../../launch/
+  DESTINATION share/${PROJECT_NAME}/launch
+)
+
+if(BUILD_TESTING)
+  find_package(ament_lint_auto REQUIRED)
+  ament_lint_auto_find_test_dependencies()
+endif()
 
 ament_package()
