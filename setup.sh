@@ -51,9 +51,9 @@ if docker ps -a | grep -q garden-bot-container; then
   docker rm garden-bot-container
 fi
 
-# Run the ROS 2 container with the specified configuration
+# Run the ROS 2 container with the specified configuration and expose NoVNC port
 echo "Running the ROS 2 container..."
-docker run -d --network $network_name --name garden-bot-container --gpus all \
+docker run -d -p 6080:6080 --network $network_name --name garden-bot-container --gpus all \
   -e NVIDIA_DRIVER_CAPABILITIES=compute,utility,video,graphics \
   garden-bot:$IMAGE_TAG /bin/bash -c "while true; do sleep 1000; done"
 
