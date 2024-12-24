@@ -1,0 +1,21 @@
+# bridge_config.yaml
+
+# Example configuration for ROS-Gazebo bridge
+bridge:
+  - topic_name: /example_topic
+    type: std_msgs/msg/String
+    qos: reliable
+    direction: bidirectional
+
+  - topic_name: /another_topic
+    type: sensor_msgs/msg/Image
+    qos: best_effort
+    direction: gz_to_ros
+
+# Additional configuration for ROS-Gazebo bridge
+parameters:
+  - param_name: use_sim_time
+    value: true
+
+  - param_name: model_sdf
+    value: gazebo/models/quadcopters/model.sdf
